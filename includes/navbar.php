@@ -8,7 +8,7 @@
                 <a href="index.php">Dashboard</a>
                 <a href="anggota.php">Anggota</a>
                 <a href="kriteria.php">Kriteria</a>
-                <a href="penilaian.php">Penilaian</a>
+                <a href="nilai_alternatif.php">Nilai Alternatif</a>
             </div>
             <div class="nav-btn">
                 <a href="logout.php">Keluar</a>
@@ -34,7 +34,7 @@
                     <a href="kriteria.php">Kriteria</a>
                 </li>
                 <li>
-                    <a href="penilaian.php">Penilaian</a>
+                    <a href="nilai_alternatif.php">Nilai Alternatif</a>
                 </li>
                 <li>
                     <a href="logout.php">Keluar</a>
