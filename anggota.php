@@ -67,7 +67,7 @@ if (isset($_GET['hapusData'])) {
         <hr>
     </div>
 
-    <button onclick="addData()" class="btn-cAdd">Tambah Data Anggota</button>
+    <button onclick="addData()" class="btn-cAdd"><i class="fa fa-plus"></i> Tambah Data Anggota</button>
 
     <section class="main-sec">
         <div class="sec-tableData">
@@ -77,40 +77,42 @@ if (isset($_GET['hapusData'])) {
                     <hr>
                 </div>
                 <div class="card-body">
-                    <table class="datatable display" style="width:100%" id="datatable">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama</th>
-                                <th>Telp</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        $qData_anggota = mysqli_query($conn, "SELECT * FROM anggota ORDER BY id_anggota LIMIT 10");
-
-                        if (mysqli_num_rows($qData_anggota) > 0) :
-                            while ($dAnggota = mysqli_fetch_assoc($qData_anggota)):
-                        ?>
-                                <tr class="table-data">
-                                    <td><?= $dAnggota['id_anggota'] ?></td>
-                                    <td><?= $dAnggota['nama'] ?></td>
-                                    <td><?= $dAnggota['no_telp'] ?></td>
-                                    <td>
-                                        <a href="anggota.php?updateAnggota=<?= $dAnggota['id_anggota'] ?>" class="btn-update">Ubah</a>
-                                        <a href="anggota.php?hapusData=<?= $dAnggota['id_anggota'] ?>" class="btn-delete" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
-                                    </td>
+                    <div class="table-responsive">
+                        <table class="datatable display" style="width:100%" id="datatable">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Telp</th>
+                                    <th>Aksi</th>
                                 </tr>
+                            </thead>
+                            <tbody>
                             <?php
-                            endwhile;
-                        else : ?>
-                            <tr>
-                                <td colspan="3" align="center"><i>Data Anggota Belum Tersedia</i></td>
-                            </tr>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
+                            $qData_anggota = mysqli_query($conn, "SELECT * FROM anggota ORDER BY id_anggota LIMIT 10");
+
+                            if (mysqli_num_rows($qData_anggota) > 0) :
+                                while ($dAnggota = mysqli_fetch_assoc($qData_anggota)):
+                            ?>
+                                    <tr class="table-data">
+                                        <td><?= $dAnggota['id_anggota'] ?></td>
+                                        <td><?= $dAnggota['nama'] ?></td>
+                                        <td><?= $dAnggota['no_telp'] ?></td>
+                                        <td>
+                                            <a href="anggota.php?updateAnggota=<?= $dAnggota['id_anggota'] ?>" class="btn-update">Ubah</a>
+                                            <a href="anggota.php?hapusData=<?= $dAnggota['id_anggota'] ?>" class="btn-delete" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
+                                        </td>
+                                    </tr>
+                                <?php
+                                endwhile;
+                            else : ?>
+                                <tr>
+                                    <td colspan="4" align="center"><i>Data Anggota Belum Tersedia</i></td>
+                                </tr>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

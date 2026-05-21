@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Bulan Mei 2026 pada 08.29
+-- Waktu pembuatan: 21 Bulan Mei 2026 pada 13.47
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.8
 
@@ -51,9 +51,55 @@ INSERT INTO `admin` (`id_admin`, `username`, `password`, `nama`) VALUES
 CREATE TABLE `alternatif` (
   `id_alternatif` int(11) NOT NULL,
   `id_anggota` int(11) NOT NULL,
-  `id_kriteria` int(11) NOT NULL,
+  `kode_kriteria` varchar(2) NOT NULL,
   `nilai_alternatif` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `alternatif`
+--
+
+INSERT INTO `alternatif` (`id_alternatif`, `id_anggota`, `kode_kriteria`, `nilai_alternatif`) VALUES
+(1, 1, 'C1', 4),
+(2, 1, 'C2', 2),
+(3, 1, 'C3', 3),
+(4, 1, 'C4', 1),
+(5, 2, 'C1', 5),
+(6, 2, 'C2', 2),
+(7, 2, 'C3', 5),
+(8, 2, 'C4', 5),
+(9, 3, 'C1', 2),
+(10, 3, 'C2', 4),
+(11, 3, 'C3', 4),
+(12, 3, 'C4', 2),
+(13, 4, 'C1', 4),
+(14, 4, 'C2', 2),
+(15, 4, 'C3', 5),
+(16, 4, 'C4', 2),
+(17, 5, 'C1', 4),
+(18, 5, 'C2', 2),
+(19, 5, 'C3', 5),
+(20, 5, 'C4', 2),
+(21, 6, 'C1', 5),
+(22, 6, 'C2', 4),
+(23, 6, 'C3', 4),
+(24, 6, 'C4', 3),
+(25, 7, 'C1', 2),
+(26, 7, 'C2', 4),
+(27, 7, 'C3', 3),
+(28, 7, 'C4', 5),
+(29, 8, 'C1', 2),
+(30, 8, 'C2', 1),
+(31, 8, 'C3', 3),
+(32, 8, 'C4', 1),
+(33, 9, 'C1', 4),
+(34, 9, 'C2', 5),
+(35, 9, 'C3', 4),
+(36, 9, 'C4', 4),
+(37, 10, 'C1', 3),
+(38, 10, 'C2', 5),
+(39, 10, 'C3', 3),
+(40, 10, 'C4', 1);
 
 -- --------------------------------------------------------
 
@@ -116,7 +162,7 @@ CREATE TABLE `ranking` (
   `id_ranking` int(11) NOT NULL,
   `id_alternatif` int(11) NOT NULL,
   `ranking` int(11) NOT NULL,
-  `nilai_optimasi` int(11) NOT NULL,
+  `nilai_optimasi` float NOT NULL,
   `tgl_hitung` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -138,26 +184,26 @@ CREATE TABLE `sub_kriteria` (
 --
 
 INSERT INTO `sub_kriteria` (`id_sub`, `kode_kriteria`, `nama_sub`, `nilai`) VALUES
-(21, 'C1', 'Lebih dari 3 Tahun', 5),
-(22, 'C1', '2 - 3 Tahun', 4),
-(23, 'C1', '1 - 2 Tahun', 3),
-(24, 'C1', '6 Bulan - 1 Tahun', 2),
-(25, 'C1', 'Kurang dari 6 Bulan', 1),
 (26, 'C2', 'Lebih dari 7jt', 5),
 (27, 'C2', '5jt - 7jt', 4),
 (28, 'C2', '4jt - 4,999jt', 3),
 (29, 'C2', '3jt - 3,999jt', 2),
 (30, 'C2', 'Kurang dari 3jt', 1),
-(31, 'C3', 'Kurang dari 3jt', 5),
-(32, 'C3', '3jt - 3,999jt', 4),
-(33, 'C3', '4jt - 4,999jt', 3),
-(34, 'C3', '5jt - 6jt', 2),
-(35, 'C3', 'Lebih dari 7jt', 1),
 (46, 'C4', 'Lebih dari 8jt', 5),
 (47, 'C4', '5jt - 8jt', 4),
 (48, 'C4', '3jt - 4,999jt', 3),
 (49, 'C4', '1,5jt - 2,999jt', 2),
-(50, 'C4', 'kurang dari 1,5jt', 1);
+(50, 'C4', 'kurang dari 1,5jt', 1),
+(51, 'C1', 'Lebih dari 3 Tahun', 5),
+(52, 'C1', '2 - 3 Tahun', 4),
+(53, 'C1', '1 - 2 Tahun', 3),
+(54, 'C1', '6 Bulan - 1 Tahun', 2),
+(55, 'C1', 'Kurang dari 6 Bulan', 1),
+(56, 'C3', 'Kurang dari 3jt', 5),
+(57, 'C3', '3jt - 3,999jt', 4),
+(58, 'C3', '4jt - 4,999jt', 3),
+(59, 'C3', '5jt - 6jt', 2),
+(60, 'C3', 'Lebih dari 6jt', 1);
 
 --
 -- Indexes for dumped tables
@@ -213,7 +259,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `alternatif`
 --
 ALTER TABLE `alternatif`
-  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT untuk tabel `anggota`
@@ -231,7 +277,7 @@ ALTER TABLE `ranking`
 -- AUTO_INCREMENT untuk tabel `sub_kriteria`
 --
 ALTER TABLE `sub_kriteria`
-  MODIFY `id_sub` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id_sub` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

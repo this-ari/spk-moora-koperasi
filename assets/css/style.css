@@ -27,6 +27,12 @@ body {
   background-color: #f5f5f5;
 }
 
+a i,
+button i{
+  margin-right: 8px;
+  font-size: 18px;
+}
+
 .d-none {
   display: none !important;
 }
@@ -388,4 +394,16 @@ div.dt-container .dt-paging .dt-paging-button:hover {
   background-color: #b2d4b2 !important;
   border-color: #b2d4b2 !important;
   color: #2b2b2b !important;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1rem;
+}
+
+div.dt-container {
+  width: 100% !important;
+  overflow-x: auto;
 }

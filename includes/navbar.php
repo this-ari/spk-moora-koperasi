@@ -11,7 +11,7 @@
                 <a href="nilai_alternatif.php">Nilai Alternatif</a>
             </div>
             <div class="nav-btn">
-                <a href="logout.php">Keluar</a>
+                <a href="logout.php" onclick="return confirm('Apakah Anda yakin ingin keluar?')">Keluar</a>
                 <button id="btn-bar" class="">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -37,7 +37,7 @@
                     <a href="nilai_alternatif.php">Nilai Alternatif</a>
                 </li>
                 <li>
-                    <a href="logout.php">Keluar</a>
+                    <a href="logout.php" onclick="return confirm('Apakah Anda yakin ingin keluar?')">Keluar</a>
                 </li>
             </ul>
         </div>

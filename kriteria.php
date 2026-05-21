@@ -131,7 +131,7 @@ if (isset($_GET['hapusData'])) {
         <hr>
     </div>
 
-    <button onclick="addData()" class="btn-cAdd">Tambah Data Kriteria</button>
+    <button onclick="addData()" class="btn-cAdd"><i class="fas fa-plus"></i> Tambah Data Kriteria</button>
 
     <section class="sec-add <?php echo isset($_GET['updateKriteria']) ? 'show' : ''; ?>">
         <?php
@@ -255,56 +255,58 @@ if (isset($_GET['hapusData'])) {
                 <hr>
             </div>
             <div class="card-body">
-                <table class="datatable display" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Kode</th>
-                            <th>Nama Kriteria</th>
-                            <th>Bobot</th>
-                            <th>Jenis</th>
-                            <th>Sub Kriteria</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    $qData_kriteria = mysqli_query($conn, "SELECT * FROM kriteria ORDER BY kode_kriteria");
-
-                    if (mysqli_num_rows($qData_kriteria) > 0) :
-                        while ($dKriteria = mysqli_fetch_assoc($qData_kriteria)):
-                    ?>
-                            <tr class="table-data">
-                                <td><b><?= $dKriteria['kode_kriteria'] ?></b></td>
-                                <td><?= $dKriteria['nama_kriteria'] ?></td>
-                                <td><?= $dKriteria['bobot'] ?></td>
-                                <td><?= $dKriteria['jenis'] ?></td>
-                                <td>
-                                    <?php
-                                    $qSubKriteria = mysqli_query($conn, "SELECT * FROM sub_kriteria WHERE kode_kriteria = '{$dKriteria['kode_kriteria']}'");
-                                    if (mysqli_num_rows($qSubKriteria) > 0) :
-                                        while ($dSubKriteria = mysqli_fetch_assoc($qSubKriteria)):
-                                    ?>
-                                            <p><?= $dSubKriteria['nama_sub'] ?></p>
-                                        <?php
-                                        endwhile;
-                                    else : ?>
-                                        <p><i>Sub Kriteria Belum Tersedia</i></p>
-                                    <?php endif; ?>
-                                </td>
-                                <td>
-                                    <a href="kriteria.php?updateKriteria=<?= $dKriteria['kode_kriteria'] ?>" class="btn-update">Ubah</a>
-                                    <a href="kriteria.php?hapusData=<?= $dKriteria['kode_kriteria'] ?>" class="btn-delete" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
-                                </td>
+                <div class="table-responsive">
+                    <table class="datatable display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Kode</th>
+                                <th>Nama Kriteria</th>
+                                <th>Bobot</th>
+                                <th>Jenis</th>
+                                <th>Sub Kriteria</th>
+                                <th>Aksi</th>
                             </tr>
+                        </thead>
+                        <tbody>
                         <?php
-                        endwhile;
-                    else : ?>
-                        <tr>
-                            <td colspan="5" align="center"><i>Data Kriteria Belum Tersedia</i></td>
-                        </tr>
-                    <?php endif; ?>
-                    </tbody>
-                </table>
+                        $qData_kriteria = mysqli_query($conn, "SELECT * FROM kriteria ORDER BY kode_kriteria");
+
+                        if (mysqli_num_rows($qData_kriteria) > 0) :
+                            while ($dKriteria = mysqli_fetch_assoc($qData_kriteria)):
+                        ?>
+                                <tr class="table-data">
+                                    <td><b><?= $dKriteria['kode_kriteria'] ?></b></td>
+                                    <td><?= $dKriteria['nama_kriteria'] ?></td>
+                                    <td><?= $dKriteria['bobot'] ?></td>
+                                    <td><?= $dKriteria['jenis'] ?></td>
+                                    <td>
+                                        <?php
+                                        $qSubKriteria = mysqli_query($conn, "SELECT * FROM sub_kriteria WHERE kode_kriteria = '{$dKriteria['kode_kriteria']}'");
+                                        if (mysqli_num_rows($qSubKriteria) > 0) :
+                                            while ($dSubKriteria = mysqli_fetch_assoc($qSubKriteria)):
+                                        ?>
+                                                <p><?= $dSubKriteria['nama_sub'] ?></p>
+                                            <?php
+                                            endwhile;
+                                        else : ?>
+                                            <p><i>Sub Kriteria Belum Tersedia</i></p>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <a href="kriteria.php?updateKriteria=<?= $dKriteria['kode_kriteria'] ?>" class="btn-update">Ubah</a>
+                                        <a href="kriteria.php?hapusData=<?= $dKriteria['kode_kriteria'] ?>" class="btn-delete" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
+                                    </td>
+                                </tr>
+                            <?php
+                            endwhile;
+                        else : ?>
+                            <tr>
+                                <td colspan="6" align="center"><i>Data Kriteria Belum Tersedia</i></td>
+                            </tr>
+                        <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
